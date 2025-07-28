@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آتوسا اقبالی - معمار انرژی</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Tahoma', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #fff;
+            color: #2563eb;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        
+        .btn-outline:hover {
+            background: #fff;
+            color: #2563eb;
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #2563eb;
+        }
+        
+        /* About Section */
+        .about {
+            background: #f8fafc;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-tag {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .portfolio-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background: #f1f5f9;
+            color: #2563eb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Services Section */
+        .services {
+            background: #f8fafc;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        .contact-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">آتوسا اقبالی</div>
+            <ul class="nav-links">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#about">درباره من</a></li>
+                <li><a href="#portfolio">نمونه کارها</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>آتوسا اقبالی</h1>
+            <p class="subtitle">معمار انرژی | طراح ساختمان‌های پایدار | متخصص انرژی‌های تجدیدپذیر</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn btn-primary">مشاهده نمونه کارها</a>
+                <a href="#contact" class="btn btn-outline">تماس با من</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">درباره من</h2>
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <div class="profile-img">👩‍💼</div>
+                </div>
+                <div class="about-text fade-in">
+                    <h3>معمار انرژی با نگاه نوآورانه</h3>
+                    <p>من آتوسا اقبالی، دانشجوی معماری انرژی هستم که با تمرکز بر طراحی ساختمان‌های پایدار و بهره‌گیری از انرژی‌های تجدیدپذیر فعالیت می‌کنم. هدف من ایجاد فضاهایی است که هم زیبا باشند و هم در تعامل با محیط زیست عملکرد بهینه‌ای داشته باشند.</p>
+                    <p>در پروژه‌هایم سعی می‌کنم تا از جدیدترین تکنولوژی‌ها و روش‌های طراحی استفاده کنم تا بتوانم ساختمان‌هایی با مصرف انرژی کم و راندمان بالا ارائه دهم.</p>
+                    <div class="skills">
+                        <span class="skill-tag">طراحی پایدار</span>
+                        <span class="skill-tag">انرژی خورشیدی</span>
+                        <span class="skill-tag">BIM</span>
+                        <span class="skill-tag">AutoCAD</span>
+                        <span class="skill-tag">Revit</span>
+                        <span class="skill-tag">3ds Max</span>
+                        <span class="skill-tag">تحلیل انرژی</span>
+                        <span class="skill-tag">LEED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">نمونه کارها</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏢</div>
+                    <div class="portfolio-content">
+                        <h4>مجتمع مسکونی پایدار</h4>
+                        <p>طراحی مجتمع مسکونی 120 واحدی با استفاده از انرژی خورشیدی و سیستم‌های بهینه‌سازی مصرف انرژی</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">معماری پایدار</span>
+                            <span class="tag">انرژی خورشیدی</span>
+                            <span class="tag">LEED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏫</div>
+                    <div class="portfolio-content">
+                        <h4>مرکز آموزشی صفر انرژی</h4>
+                        <p>طراحی مدرسه‌ای که تمام انرژی مورد نیازش را از منابع تجدیدپذیر تامین می‌کند</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">صفر انرژی</span>
+                            <span class="tag">طراحی اقلیمی</span>
+                            <span class="tag">بهینه‌سازی</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏪</div>
+                    <div class="portfolio-content">
+                        <h4>مرکز تجاری سبز</h4>
+                        <p>مجمع تجاری با سیستم‌های هوشمند کنترل انرژی و استفاده از مواد بازیافتی</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">ساختمان هوشمند</span>
+                            <span class="tag">مواد پایدار</span>
+                            <span class="tag">کنترل اتوماتیک</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏭</div>
+                    <div class="portfolio-content">
+                        <h4>کارخانه با انرژی بادی</h4>
+                        <p>طراحی مجموعه صنعتی که از انرژی باد برای تامین نیازهای خود استفاده می‌کند</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">انرژی بادی</span>
+                            <span class="tag">صنعتی</span>
+                            <span class="tag">پایدار</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏥</div>
+                    <div class="portfolio-content">
+                        <h4>بیمارستان هوشمند</h4>
+                        <p>مجموعه درمانی با سیستم‌های هوشمند مدیریت انرژی و استاندارهای بالای بهداشتی</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">بهداشت</span>
+                            <span class="tag">هوشمند</span>
+                            <span class="tag">کارآمد</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">🏡</div>
+                    <div class="portfolio-content">
+                        <h4>خانه خودکفا</h4>
+                        <p>ویلای مسکونی که تمام انرژی، آب و حتی مواد غذایی خود را تولید می‌کند</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">خودکفایی</span>
+                            <span class="tag">مسکونی</span>
+                            <span class="tag">نوآوری</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title fade-in">خدمات من</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏗️</div>
+                    <h4>طراحی معماری پایدار</h4>
+                    <p>طراحی ساختمان‌هایی که با محیط زیست در تعامل هستند و انرژی کمی مصرف می‌کنند</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚡</div>
+                    <h4>تحلیل انرژی ساختمان</h4>
+                    <p>بررسی و تحلیل مصرف انرژی ساختمان‌ها و ارائه راهکارهای بهینه‌سازی</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">☀️</div>
+                    <h4>طراحی سیستم خورشیدی</h4>
+                    <p>طراحی و پیاده‌سازی سیستم‌های انرژی خورشیدی برای ساختمان‌های مسکونی و تجاری</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌱</div>
+                    <h4>مشاوره LEED</h4>
+                    <p>مشاوره و راهنمایی برای دریافت گواهینامه‌های ساختمان سبز و پایدار</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🖥️</div>
+                    <h4>مدل‌سازی BIM</h4>
+                    <p>ایجاد مدل‌های سه‌بعدی دقیق از ساختمان‌ها با تمام جزئیات فنی و انرژی</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔧</div>
+                    <h4>نظارت بر اجرا</h4>
+                    <p>نظارت بر اجرای پروژه‌ها برای اطمینان از پیاده‌سازی صحیح طرح‌های انرژی</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title fade-in">تماس با من</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h4>بیایید در مورد پروژه بعدی‌تان صحبت کنیم</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>ایمیل:</strong><br>
+                            atoosa.eghbali@email.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>تلفن:</strong><br>
+                            +98 912 345 6789
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>آدرس:</strong><br>
+                            تهران، ایران
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <strong>لینکدین:</strong><br>
+                            linkedin.com/in/atoosa-eghbali
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">نام و نام خانوادگی</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ایمیل</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">موضوع</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">پیام</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ارسال پیام</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link">📧</a>
+                <a href="#" class="social-link">💼</a>
+                <a href="#" class="social-link">📱</a>
+                <a href="#" class="social-link">🌐</a>
+            </div>
+            <p>&copy; 2025 آتوسا اقبالی. تمام حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Portfolio item click handler
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // Add a subtle pulse animation
+                item.style.animation = 'pulse 0.6s ease';
+                setTimeout(() => {
+                    item.style.animation = '';
+                }, 600);
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('لطفاً تمام فیلدها را پر کنید.');
+                return;
+            }
+            
+            // Show success message
+            alert('پیام شما با موفقیت ارسال شد! به زودی با شما تماس خواهم گرفت.');
+            
+            // Reset form
+            e.target.reset();
+        });
+
+        // Add pulse animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu toggle (for future enhancement)
+        let mobileMenuOpen = false;
+        
+        // Add mobile menu button functionality
+        function createMobileMenu() {
+            const navContainer = document.querySelector('.nav-container');
+            const mobileMenuBtn = document.createElement('button');
+            mobileMenuBtn.innerHTML = '☰';
+            mobileMenuBtn.className = 'mobile-menu-btn';
+            mobileMenuBtn.style.cssText = `
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #333;
+                cursor: pointer;
+                @media (max-width: 768px) {
+                    display: block;
+                }
+            `;
+            
+            navContainer.appendChild(mobileMenuBtn);
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                mobileMenuOpen = !mobileMenuOpen;
+                
+                if (mobileMenuOpen) {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '1rem';
+                    navLinks.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    navLinks.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize mobile menu if screen is small
+        if (window.innerWidth <= 768) {
+            createMobileMenu();
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                document.querySelector('.nav-links').style.display = 'flex';
+                document.querySelector('.nav-links').style.flexDirection = 'row';
+                document.querySelector('.nav-links').style.position = 'static';
+                document.querySelector('.nav-links').style.background = 'transparent';
+                document.querySelector('.nav-links').style.padding = '0';
+                document.querySelector('.nav-links').style.boxShadow = 'none';
+            } else if (!document.querySelector('.mobile-menu-btn')) {
+                createMobileMenu();
+            }
+        });
+
+        // Add typing effect to hero subtitle
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero .subtitle');
+            const originalText = subtitle.textContent;
+            setTimeout(() => {
+                typeWriter(subtitle, originalText, 80);
+            }, 1500);
+        });
+
+        // Add floating particles animation to hero background
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            particlesContainer.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+            `;
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: float ${3 + Math.random() * 4}s ease-in-out infinite;
+                    animation-delay: ${Math.random() * 4}s;
+                `;
+                particlesContainer.appendChild(particle);
+            }
+            
+            hero.appendChild(particlesContainer);
+        }
+        
+        createParticles();
+    </script>
+</body>
+</html>
